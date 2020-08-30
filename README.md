@@ -58,8 +58,8 @@ give your full domain without any subdomain, i.e. `lukesmith.xyz`.
    big email services like Gmail will stop emails coming from mail servers
    with no/invalid rDNS lookups. This means your email will fail to even
    make it to the recipients spam folder; it will never make it to them.
-5. `apt purge` all your previous (failed) attempts to install and configure a
-   mail server. Get rid of _all_ your system settings for Postfix, Dovecot,
+5. `pacman -Rcsn` all your previous (failed) attempts to install and configure a
+   mailserver. Get rid of _all_ your system settings for Postfix, Dovecot,
    OpenDKIM and everything else. This script builds off of a fresh install.
 6. Some VPS providers block mail port numbers like 25, 933 or 587 by default.
    You may need to request these ports be opened to send mail successfully.
