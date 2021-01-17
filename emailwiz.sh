@@ -125,6 +125,8 @@ spamassassin unix -     n       n       -       -       pipe
 
 echo "Creating Dovecot config..."
 
+mkdir -p /etc/dovecot
+
 echo "# Dovecot config
 # Note that in the dovecot conf, you can use:
 # %u for username
@@ -208,7 +210,7 @@ plugin {
 }
 " > /etc/dovecot/dovecot.conf
 
-mkdir /var/lib/dovecot/sieve/
+mkdir -p /var/lib/dovecot/sieve/
 
 echo "require [\"fileinto\", \"mailbox\"];
 if header :contains \"X-Spam-Flag\" \"YES\"
