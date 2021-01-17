@@ -258,15 +258,15 @@ grep -q "127.0.0.1" /etc/postfix/dkim/trustedhosts 2>/dev/null ||
 1.2.3.4/24" >> /etc/postfix/dkim/trustedhosts
 
 # ...and source it from opendkim.conf
-grep -q "^KeyTable" /etc/opendkim.conf 2>/dev/null || echo "KeyTable file:/etc/postfix/dkim/keytable
+grep -q "^KeyTable" /etc/opendkim/opendkim.conf 2>/dev/null || echo "KeyTable file:/etc/postfix/dkim/keytable
 SigningTable refile:/etc/postfix/dkim/signingtable
-InternalHosts refile:/etc/postfix/dkim/trustedhosts" >> /etc/opendkim.conf
+InternalHosts refile:/etc/postfix/dkim/trustedhosts" >> /etc/opendkim/opendkim.conf
 
-sed -i '/^#Canonicalization/s/simple/relaxed\/simple/' /etc/opendkim.conf
-sed -i '/^#Canonicalization/s/^#//' /etc/opendkim.conf
+sed -i '/^#Canonicalization/s/simple/relaxed\/simple/' /etc/opendkim/opendkim.conf
+sed -i '/^#Canonicalization/s/^#//' /etc/opendkim/opendkim.conf
 
-sed -e '/Socket/s/^#*/#/' -i /etc/opendkim.conf
-grep -q "^Socket\s*inet:12301@localhost" /etc/opendkim.conf || echo "Socket inet:12301@localhost" >> /etc/opendkim.conf
+sed -e '/Socket/s/^#*/#/' -i /etc/opendkim/opendkim.conf
+grep -q "^Socket\s*inet:12301@localhost" /etc/opendkim/opendkim.conf || echo "Socket inet:12301@localhost" >> /etc/opendkim/opendkim.conf
 
 # OpenDKIM daemon settings, removing previously activated socket.
 sed -i "/^SOCKET/d" /etc/default/opendkim && echo "SOCKET=\"inet:12301@localhost\"" >> /etc/default/opendkim
